@@ -64,6 +64,11 @@
             width: 300px;
             text-align: center;
         }
+        .popup input {
+            margin-top: 10px;
+            padding: 5px;
+            width: 80%;
+        }
         .popup button {
             margin-top: 10px;
             padding: 5px 10px;
@@ -72,6 +77,10 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
+        }
+        .error {
+            color: red;
+            margin-top: 10px;
         }
     </style>
 </head>
@@ -82,16 +91,27 @@
     </div>
 
     <div class="popup" id="popup">
-        <p><a id="bash" href="bash.html"></p>
-        <button onclick="closeLetter()">Przejdz do listu</button>
+        <p>Wpisz hasło, aby otworzyć list:</p>
+        <input type="password" id="passwordInput" placeholder="Wpisz hasło">
+        <button onclick="checkPassword()">Przejdź do listu</button>
+        <p id="error" class="error"></p>
     </div>
 
     <script>
         function openLetter() {
             document.getElementById('popup').style.display = 'block';
         }
-        function closeLetter() {
-            document.getElementById('popup').style.display = 'none';
+
+        function checkPassword() {
+            var password = document.getElementById('passwordInput').value;
+            var correctPassword = "kochamalicjamariasuplewska";
+            var errorElement = document.getElementById('error');
+
+            if (password === correctPassword) {
+                window.location.href = "bash.html"; // Przekierowanie na bash.html
+            } else {
+                errorElement.textContent = "Błędne hasło! Spróbuj ponownie.";
+            }
         }
     </script>
 </body>
